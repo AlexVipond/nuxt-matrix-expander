@@ -1,5 +1,9 @@
 <template lang="html">
   <form class="font-secondary" action="index.html" method="post">
+    <!-- TODO:
+      map qualitative values to quantitative
+      opt out of including edges with a strength of 0 -->
+
     <matrix-upload
       @matrix-uploaded="setMatrix" />
 
@@ -32,6 +36,10 @@ export default {
     }
   },
   methods: {
+    emitEdgeList () {
+      this.$emit('edge-list-created', this.edgeList)
+    },
+
     setMatrix (matrix) {
       this.matrix = matrix
     },
@@ -40,9 +48,8 @@ export default {
     },
     setEdgeList (edgeList) {
       this.edgeList = edgeList
-    },
-    returnEdgeList (returnEdgeList) {
-      // TODO: show it
+
+      this.emitEdgeList()
     }
   }
 }

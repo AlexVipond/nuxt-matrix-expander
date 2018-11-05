@@ -60,6 +60,7 @@ export default {
     selectOption (option) {
       this.direction = option
 
+      console.log('here')
       this.$emit('direction-set', this.direction)
     }
   }

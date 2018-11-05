@@ -1,6 +1,6 @@
 <template lang="html">
   <label
-    class="btn hover:btn-grow"
+    class="btn hover:btn-grow active:btn-pressed"
     for="expand-matrix"
     @click.prevent="expandMatrix(matrix, direction)">
     <button
@@ -33,13 +33,93 @@ export default {
   components: {
     FeatherShuffle
   },
+  data () {
+    return {
+      edgeList: []
+    }
+  },
   methods: {
+    emitEdgeList () {
+      this.$emit('matrix-expanded', this.edgeList)
+    },
+
+    createDirectedEdge (source, target, currentStrengths) {
+      switch(true) {
+        case source === target:
+          break
+        case (!currentStrengths[target]):
+          break
+        default:
+          let edge = {
+            from: source,
+            to: target,
+            strength: currentStrengths[target]
+          }
+          return edge
+      }
+    },
     expandDirectedMatrix (matrix) {
-      console.log('expand directed')
+      let sources = matrix.sources,
+          targets = matrix.targets,
+          strengths = matrix.strengths
+
+      let edgeList = sources.reduce((edgeList, source) => {
+        let currentStrengths = strengths[source]
+
+        let edges = targets.reduce((edges, target) => {
+          let edge = this.createDirectedEdge(source, target, currentStrengths)
+
+          if(edge) edges.push(edge)
+
+          return edges
+        }, [])
+
+        return edgeList.concat(edges)
+      }, [])
+
+      this.edgeList = edgeList
+      this.emitEdgeList()
+    },
+
+    createUndirectedEdge (source, target, currentStrengths, strengths) {
+      switch(true) {
+        case source === target:
+          break
+        case (!currentStrengths[target]):
+          break
+        default:
+          let edge = {
+            from: source,
+            to: target,
+            strength: currentStrengths[target]
+          }
+          delete strengths[target][source]
+          return edge
+      }
     },
     expandUndirectedMatrix (matrix) {
-      console.log('expand undirected')
+      let sources = matrix.sources,
+          targets = matrix.targets,
+          strengths = matrix.strengths
+
+      let edgeList = sources.reduce((edgeList, source) => {
+        let currentStrengths = strengths[source]
+
+        let edges = targets.reduce((edges, target) => {
+          let edge = this.createUndirectedEdge(source, target, currentStrengths, strengths)
+
+          if(edge) edges.push(edge)
+
+          return edges
+        }, [])
+
+        return edgeList.concat(edges)
+      }, [])
+
+      this.edgeList = edgeList
+      this.emitEdgeList()
     },
+
     expandMatrix (matrix, direction) {
       // TODO: alert for null matrix
 
