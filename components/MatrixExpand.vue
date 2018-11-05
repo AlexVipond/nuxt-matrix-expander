@@ -2,8 +2,9 @@
   <label
     class="btn hover:btn-grow"
     for="expand-matrix"
-    @click.prevent="expandMatrix()">
+    @click.prevent="expandMatrix(matrix, direction)">
     <button
+      class="hidden"
       type="submit"
       name="expand-matrix"></button>
 
@@ -19,8 +20,40 @@
 import FeatherShuffle from '~/components/icons/FeatherShuffle.vue'
 
 export default {
+  props: {
+    matrix: {
+      type: Object,
+      required: true
+    },
+    direction: {
+      type: String,
+      required: true
+    }
+  },
   components: {
     FeatherShuffle
+  },
+  methods: {
+    expandDirectedMatrix (matrix) {
+      console.log('expand directed')
+    },
+    expandUndirectedMatrix (matrix) {
+      console.log('expand undirected')
+    },
+    expandMatrix (matrix, direction) {
+      // TODO: alert for null matrix
+
+      switch(true) {
+        case direction === 'directed':
+          this.expandDirectedMatrix(matrix)
+          break
+        case direction === 'undirected':
+          this.expandUndirectedMatrix(matrix)
+          break
+        default:
+          alert('Woops! Don\'t forget to select a direction.')
+      }
+    }
   }
 }
 </script>

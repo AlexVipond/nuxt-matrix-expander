@@ -70,6 +70,10 @@ export default {
     },
   },
   methods: {
+    emitData () {
+      this.$emit('matrix-uploaded', this.matrix)
+    },
+
     setFileName (value) {
       this.fileName = value.split("\\").reverse()[0]
     },
@@ -112,6 +116,8 @@ export default {
         targets: targets,
         strengths: strengths
       }
+
+      this.emitData()
     },
     parseCSV (file) {
       Papa.parse(file, {
@@ -180,6 +186,8 @@ export default {
         targets: targets,
         strengths: strengths
       }
+
+      this.emitData()
     },
     parseXLSX (file) {
       let readAsBinaryString = true,
@@ -232,6 +240,8 @@ export default {
         targets: targets,
         strengths: strengths
       }
+
+      this.emitData()
     },
     parseJSON (file) {
       let reader = new FileReader()

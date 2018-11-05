@@ -1,10 +1,15 @@
 <template lang="html">
   <form class="font-secondary" action="index.html" method="post">
-    <matrix-upload />
+    <matrix-upload
+      @matrix-uploaded="setMatrix" />
 
-    <matrix-direction-toggle />
+    <matrix-direction-toggle
+      @direction-set="setDirection"/>
 
-    <matrix-expand />
+    <matrix-expand
+      :matrix="matrix"
+      :direction="direction"
+      @matrix-expanded="setEdgeList" />
   </form>
 </template>
 
@@ -21,9 +26,23 @@ export default {
   },
   data () {
     return {
-      data: [],
+      matrix: {},
       direction: '',
-      result: []
+      edgeList: []
+    }
+  },
+  methods: {
+    setMatrix (matrix) {
+      this.matrix = matrix
+    },
+    setDirection (direction) {
+      this.direction = direction
+    },
+    setEdgeList (edgeList) {
+      this.edgeList = edgeList
+    },
+    returnEdgeList (returnEdgeList) {
+      // TODO: show it
     }
   }
 }
