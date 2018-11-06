@@ -2,7 +2,7 @@
   <label
     class="inline-flex items-center group"
     :for="inputId"
-    @click.prevent="toggle">
+    @input="toggle">
 
     <input
       :id="inputId"
@@ -72,7 +72,7 @@ export default {
     }
   },
   methods: {
-    toggle () {
+    toggle (evt) {
       this.isChecked = !this.isChecked
       this.$emit(`${this.inputId}-toggled`, this.isChecked)
     }

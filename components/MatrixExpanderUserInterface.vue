@@ -16,8 +16,8 @@
     <matrix-strength-zero
       @strength-zero-set="setStrengthZero"/>
 
-    <!-- <matrix-connection-type
-      @connection-type-set="setConnectionType"/> -->
+    <matrix-connection-type
+      @connection-type-set="setConnectionType"/>
 
     <matrix-expand
       :matrix="matrix"
@@ -34,7 +34,7 @@ import MatrixUpload from '~/components/MatrixUpload.vue'
 import MatrixDirection from '~/components/MatrixDirection.vue'
 import MatrixSelfConnections from '~/components/MatrixSelfConnections.vue'
 import MatrixStrengthZero from '~/components/MatrixStrengthZero.vue'
-// import MatrixConnectionType from '~/components/MatrixConnectionType.vue'
+import MatrixConnectionType from '~/components/MatrixConnectionType.vue'
 import MatrixExpand from '~/components/MatrixExpand.vue'
 
 export default {
@@ -43,6 +43,7 @@ export default {
     MatrixDirection,
     MatrixSelfConnections,
     MatrixStrengthZero,
+    MatrixConnectionType,
     MatrixExpand,
   },
   data () {

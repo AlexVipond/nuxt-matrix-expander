@@ -21,12 +21,14 @@
     </header>
 
     <section>
-      <matrix-expander-user-interface id="matrix-expander-ui" />
+      <matrix-expander-user-interface
+        id="matrix-expander-ui"
+        @edge-list-created="updateData"/>
     </section>
 
     <section>
-      <data-result
-        v-if="matrixIsExpanded"/>
+      <matrix-data-download-display
+        :data="data"/>
     </section>
   </body>
 </template>
@@ -38,7 +40,7 @@ import CallToActionPrimary from '~/components/CallToActionPrimary.vue'
 import CallToActionSecondary from '~/components/CallToActionSecondary.vue'
 
 import MatrixExpanderUserInterface from '~/components/MatrixExpanderUserInterface.vue'
-import DataResult from '~/components/DataResult.vue'
+import MatrixDataDownloadDisplay from '~/components/MatrixDataDownloadDisplay.vue'
 
 export default {
   layout: 'master',
@@ -47,11 +49,16 @@ export default {
     CallToActionPrimary,
     CallToActionSecondary,
     MatrixExpanderUserInterface,
-    DataResult,
+    MatrixDataDownloadDisplay,
   },
   data () {
     return {
-      matrixIsExpanded: false,
+      data: []
+    }
+  },
+  methods: {
+    updateData (data) {
+      this.data = data
     }
   }
 }

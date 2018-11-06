@@ -1,42 +1,33 @@
 <template lang="html">
-  <label
-    class="btn hover:btn-grow active:btn-pressed"
-    for="matrix-connection-type"
-    @keyup="setConnectionType">
-    <input
-      id="matrix-connection-type"
-      type="radio"
-      name="matrix-direction"
-      value="connection-type" />
-
-    <div class="h-4 w-4 mr-2">
-      <feather-rotate-cw />
-    </div>
-
-    <span>
-      Directed
-    </span>
-  </label>
+  <input-text
+    :input-id="id"
+    :placeholder="placeholder"
+    :label="messages.label"
+    @matrix-connection-type-text-input="setConnectionType">
+  </input-text>
 </template>
 
 <script>
-import FeatherRotateCw from '~/components/icons/FeatherRotateCw.vue'
-import FeatherCircle from '~/components/icons/FeatherCircle.vue'
+import InputText from '~/components/InputText.vue'
 
 export default {
   components: {
-    FeatherRotateCw,
-    FeatherCircle,
+    InputText
   },
   data () {
     return {
-      direction: ''
+      id: 'matrix-connection-type',
+      placeholder: 'Matrix connection',
+      messages: {
+        label: 'Connection type'
+      }
     }
   },
   methods: {
-    selectOption (option) {
-      this.direction = option
-      this.$emit('direction-set', this.direction)
+    setConnectionType (value) {
+      this.connectionType = value
+
+      this.$emit('connection-type-set', this.connectionType)
     }
   }
 }
