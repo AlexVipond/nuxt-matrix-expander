@@ -3,7 +3,7 @@
     <label
       class="btn hover:btn-grow active:btn-pressed"
       for="matrix-directed"
-      @click="selectOption('directed')">
+      @click.prevent="selectOption('directed')">
       <input
         id="matrix-directed"
         class="hidden"
@@ -23,7 +23,7 @@
     <label
       class="btn hover:btn-grow active:btn-pressed"
       for="matrix-undirected"
-      @click="selectOption('undirected')">
+      @click.prevent="selectOption('undirected')">
       <input
         id="matrix-undirected"
         class="hidden"
@@ -59,7 +59,6 @@ export default {
   methods: {
     selectOption (option) {
       this.direction = option
-
       console.log('here')
       this.$emit('direction-set', this.direction)
     }

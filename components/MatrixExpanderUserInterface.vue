@@ -7,31 +7,51 @@
     <matrix-upload
       @matrix-uploaded="setMatrix" />
 
-    <matrix-direction-toggle
+    <matrix-direction
       @direction-set="setDirection"/>
+
+    <matrix-self-connections
+      @self-connections-set="setSelfConnections"/>
+
+    <matrix-strength-zero
+      @strength-zero-set="setStrengthZero"/>
+
+    <!-- <matrix-connection-type
+      @connection-type-set="setConnectionType"/> -->
 
     <matrix-expand
       :matrix="matrix"
       :direction="direction"
+      :include-self-connections="includeSelfConnections"
+      :include-strength-zero="includeStrengthZero"
+      :connection-type="connectionType"
       @matrix-expanded="setEdgeList" />
   </form>
 </template>
 
 <script>
 import MatrixUpload from '~/components/MatrixUpload.vue'
-import MatrixDirectionToggle from '~/components/MatrixDirectionToggle.vue'
+import MatrixDirection from '~/components/MatrixDirection.vue'
+import MatrixSelfConnections from '~/components/MatrixSelfConnections.vue'
+import MatrixStrengthZero from '~/components/MatrixStrengthZero.vue'
+// import MatrixConnectionType from '~/components/MatrixConnectionType.vue'
 import MatrixExpand from '~/components/MatrixExpand.vue'
 
 export default {
   components: {
     MatrixUpload,
-    MatrixDirectionToggle,
-    MatrixExpand
+    MatrixDirection,
+    MatrixSelfConnections,
+    MatrixStrengthZero,
+    MatrixExpand,
   },
   data () {
     return {
       matrix: {},
       direction: '',
+      includeSelfConnections: false,
+      includeStrengthZero: false,
+      connectionType: '',
       edgeList: []
     }
   },
@@ -45,6 +65,15 @@ export default {
     },
     setDirection (direction) {
       this.direction = direction
+    },
+    setSelfConnections (includeSelfConnections) {
+      this.includeSelfConnections = includeSelfConnections
+    },
+    setStrengthZero (includeStrengthZero) {
+      this.includeStrengthZero = includeStrengthZero
+    },
+    setConnectionType (connectionType) {
+      this.connectionType = connectionType
     },
     setEdgeList (edgeList) {
       this.edgeList = edgeList

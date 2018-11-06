@@ -2,7 +2,7 @@
   <label
     class="btn hover:btn-grow active:btn-pressed"
     for="expand-matrix"
-    @click.prevent="expandMatrix(matrix, direction)">
+    @click.prevent="validateMatrix(matrix, direction)">
     <button
       class="hidden"
       type="submit"
@@ -28,6 +28,17 @@ export default {
     direction: {
       type: String,
       required: true
+    },
+    includeSelfConnections: {
+      type: Boolean,
+      default: false
+    },
+    includeStrengthZero: {
+      type: Boolean,
+      default: false
+    },
+    connectionType: {
+      type: String
     }
   },
   components: {
@@ -43,100 +54,121 @@ export default {
       this.$emit('matrix-expanded', this.edgeList)
     },
 
+    edgeIsValid (source, target, currentStrengths) {
+      /*
+        Edges are never valid when currentStrengths[target] is undefined.
+
+        Edges with identical source and target are valid only when self connections are includeed.
+
+        Edges with a strength of zero are valid only when zero strength connections are includeed.
+      */
+
+      if(this.includeSelfConnections && this.includeStrengthZero) {
+        switch(true) {
+          case (currentStrengths[target] === undefined):
+            break
+          default:
+            return true
+        }
+      } else if(this.includeSelfConnections) {
+        switch(true) {
+          case (currentStrengths[target] === undefined):
+            break
+          case (currentStrengths[target] === 0):
+            break
+          default:
+            return true
+        }
+      } else if(this.includeStrengthZero) {
+        switch(true) {
+          case (currentStrengths[target] === undefined):
+            break
+          case (source === target):
+            break
+          default:
+            return true
+        }
+      } else {
+        switch(true) {
+          case (currentStrengths[target] === undefined):
+            break
+          case (currentStrengths[target] === 0):
+            break
+          case (source === target):
+            break
+          default:
+            return true
+        }
+      }
+    },
+
     createDirectedEdge (source, target, currentStrengths) {
-      switch(true) {
-        case source === target:
-          break
-        case (!currentStrengths[target]):
-          break
-        default:
-          let edge = {
-            from: source,
-            to: target,
-            strength: currentStrengths[target]
-          }
-          return edge
+      let edge = {
+        from: source,
+        to: target,
+        strength: currentStrengths[target]
       }
+
+      if(this.connectionType) {
+        edge['connection type'] = this.connectionType
+      }
+
+      return edge
     },
-    expandDirectedMatrix (matrix) {
-      let sources = matrix.sources,
-          targets = matrix.targets,
-          strengths = matrix.strengths
-
-      let edgeList = sources.reduce((edgeList, source) => {
-        let currentStrengths = strengths[source]
-
-        let edges = targets.reduce((edges, target) => {
-          let edge = this.createDirectedEdge(source, target, currentStrengths)
-
-          if(edge) edges.push(edge)
-
-          return edges
-        }, [])
-
-        return edgeList.concat(edges)
-      }, [])
-
-      this.edgeList = edgeList
-      this.emitEdgeList()
-    },
-
     createUndirectedEdge (source, target, currentStrengths, strengths) {
-      switch(true) {
-        case source === target:
-          break
-        case (!currentStrengths[target]):
-          break
-        default:
-          let edge = {
-            from: source,
-            to: target,
-            strength: currentStrengths[target]
-          }
-          delete strengths[target][source]
-          return edge
-      }
-    },
-    expandUndirectedMatrix (matrix) {
-      let sources = matrix.sources,
-          targets = matrix.targets,
-          strengths = matrix.strengths
+      let edge = this.createDirectedEdge(source, target, currentStrengths)
 
-      let edgeList = sources.reduce((edgeList, source) => {
-        let currentStrengths = strengths[source]
+      delete strengths[target][source]
 
-        let edges = targets.reduce((edges, target) => {
-          let edge = this.createUndirectedEdge(source, target, currentStrengths, strengths)
-
-          if(edge) edges.push(edge)
-
-          return edges
-        }, [])
-
-        return edgeList.concat(edges)
-      }, [])
-
-      this.edgeList = edgeList
-      this.emitEdgeList()
+      return edge
     },
 
     expandMatrix (matrix, direction) {
-      // TODO: alert for null matrix
+      let sources = matrix.sources,
+          targets = matrix.targets,
+          strengths = matrix.strengths
 
+      let edgeList = sources.reduce((edgeList, source) => {
+        let currentStrengths = strengths[source]
+
+        let edges = targets.reduce((edges, target) => {
+          if(this.edgeIsValid(source, target, currentStrengths)) {
+            let edge = {}
+
+            switch(true) {
+              case direction === 'directed':
+                edge = this.createDirectedEdge(source, target, currentStrengths)
+                edges.push(edge)
+                break
+              case direction === 'undirected':
+                edge = this.createUndirectedEdge(source, target, currentStrengths, strengths)
+                edges.push(edge)
+                break
+            }
+          }
+
+          return edges
+        }, [])
+
+        return edgeList.concat(edges)
+      }, [])
+
+      this.edgeList = edgeList
+      this.emitEdgeList()
+    },
+
+    validateMatrix (matrix, direction) {
       switch(true) {
-        case direction === 'directed':
-          this.expandDirectedMatrix(matrix)
+        case !matrix.sources || !matrix.targets || !matrix.strengths:
+          alert('Woops! Don\'t forget to upload a matrix.')
           break
-        case direction === 'undirected':
-          this.expandUndirectedMatrix(matrix)
+        case !direction:
+          alert('Woops! Don\'t forget to select a direction.')
           break
         default:
-          alert('Woops! Don\'t forget to select a direction.')
+          this.expandMatrix(matrix, direction)
       }
     }
   }
 }
 </script>
-
-<style lang="css">
-</style>
