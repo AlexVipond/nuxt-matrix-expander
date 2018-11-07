@@ -1,36 +1,46 @@
 <template lang="html">
   <div class="">
-    <button-download
+    <edge-list-button-download
+      button-id="download-json"
       format="json"
-      :data="data"
+      :edge-list="edgeList"
+      :file-name="fileName"
       :label="messages.download.json" />
 
-    <button-download
+    <edge-list-button-download
+      button-id="download-csv"
       format="csv"
-      :data="data"
+      :edge-list="edgeList"
+      :file-name="fileName"
       :label="messages.download.csv" />
 
-    <button-download
+    <edge-list-button-download
+      button-id="download-xlsx"
       format="xlsx"
-      :data="data"
+      :edge-list="edgeList"
+      :file-name="fileName"
       :label="messages.download.xlsx" />
 
-    <pre class="h-64 overflow-scroll">{{ stringifiedBlueprint }}</pre>
+    <pre class="h-128 overflow-scroll">{{ stringifiedBlueprint }}</pre>
   </div>
 </template>
 
 <script>
-import ButtonDownload from '~/components/ButtonDownload.vue'
+import EdgeListButtonDownload from '~/components/EdgeListButtonDownload.vue'
 
 export default {
   props: {
-    data: {
+    edgeList: {
       type: Array,
       required: true
-    }
+    },
+    fileName: {
+      type: String,
+      required: true
+    },
   },
   components: {
-    ButtonDownload
+    EdgeListButtonDownload
   },
   data () {
     return {
@@ -46,7 +56,7 @@ export default {
   computed: {
     blueprint () {
       return {
-        connections: this.data
+        connections: this.edgeList
       }
     },
     stringifiedBlueprint () {

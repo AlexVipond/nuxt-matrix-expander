@@ -71,7 +71,7 @@ export default {
   },
   methods: {
     emitData () {
-      this.$emit('matrix-uploaded', this.matrix)
+      this.$emit('matrix-uploaded', this.matrix, this.fileName)
     },
 
     setFileName (value) {

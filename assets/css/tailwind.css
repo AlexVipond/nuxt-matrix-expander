@@ -13,11 +13,11 @@ button:focus {
 }
 
 ::-moz-selection { /* Code for Firefox */
-  @apply bg-gray-300 text-white
+  @apply bg-primary-300 text-white
 }
 
 ::selection {
-  @apply bg-gray-300 text-white
+  @apply bg-primary-300 text-white
 }
 
 @tailwind components;

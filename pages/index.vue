@@ -27,8 +27,9 @@
     </section>
 
     <section>
-      <matrix-data-download-display
-        :data="data"/>
+      <edge-list-download-display
+        :edge-list="edgeList"
+        :file-name="fileName" />
     </section>
   </body>
 </template>
@@ -40,7 +41,7 @@ import CallToActionPrimary from '~/components/CallToActionPrimary.vue'
 import CallToActionSecondary from '~/components/CallToActionSecondary.vue'
 
 import MatrixExpanderUserInterface from '~/components/MatrixExpanderUserInterface.vue'
-import MatrixDataDownloadDisplay from '~/components/MatrixDataDownloadDisplay.vue'
+import EdgeListDownloadDisplay from '~/components/EdgeListDownloadDisplay.vue'
 
 export default {
   layout: 'master',
@@ -49,16 +50,18 @@ export default {
     CallToActionPrimary,
     CallToActionSecondary,
     MatrixExpanderUserInterface,
-    MatrixDataDownloadDisplay,
+    EdgeListDownloadDisplay,
   },
   data () {
     return {
-      data: []
+      edgeList: [],
+      fileName: ''
     }
   },
   methods: {
-    updateData (data) {
-      this.data = data
+    updateData (edgeList, fileName) {
+      this.edgeList = edgeList
+      this.fileName = fileName
     }
   }
 }

@@ -49,6 +49,7 @@ export default {
   data () {
     return {
       matrix: {},
+      fileName: '',
       direction: '',
       includeSelfConnections: false,
       includeStrengthZero: false,
@@ -58,11 +59,12 @@ export default {
   },
   methods: {
     emitEdgeList () {
-      this.$emit('edge-list-created', this.edgeList)
+      this.$emit('edge-list-created', this.edgeList, this.fileName)
     },
 
-    setMatrix (matrix) {
+    setMatrix (matrix, fileName) {
       this.matrix = matrix
+      this.fileName = fileName
     },
     setDirection (direction) {
       this.direction = direction
