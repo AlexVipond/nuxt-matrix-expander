@@ -5,7 +5,7 @@ html {
 }
 
 a {
-  @apply no-underline;
+  @apply no-underline text-color-inherit;
 }
 
 button:focus {
@@ -45,6 +45,12 @@ button:focus {
 
   .btn-lg {
     @apply px-4 py-3 text-lg;
+  }
+
+  .bg-pattern-circuit-board {
+    @apply bg-repeat;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url('~/circuit-board.svg');
   }
 }
 

@@ -101,7 +101,6 @@ export default {
       this.modalOpen = false
     },
     handleClick () {
-      console.log('here')
       if(this.opensModal) {
         this.onClick(this.modalOpen)
       } else {

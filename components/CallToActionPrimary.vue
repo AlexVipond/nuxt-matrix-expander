@@ -41,7 +41,7 @@ export default {
   },
   methods: {
     scrollToMatrixExpanderUI () {
-      let matrixExpanderUI = document.querySelector('#matrix-expander-ui')
+      let matrixExpanderUI = document.querySelector('#matrix-expander-ui-container')
 
       matrixExpanderUI.scrollIntoView({
         behavior: 'smooth',

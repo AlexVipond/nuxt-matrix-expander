@@ -2,24 +2,23 @@
   <label
     class="inline-flex items-center group"
     :for="inputId"
-    @change="toggle">
+    @change="emitValue">
 
     <input
       :id="inputId"
       :value="inputValue"
       class="hidden"
-      type="checkbox"
-      :name="inputGroupName"
-      :checked="isCheckedByDefault">
+      type="radio"
+      :name="inputGroupName">
 
-    <checkbox-icon
-      class="h-3 w-3 mr-2"
-      :is-checked="isChecked"
+    <radio-icon
+      class="h-3 w-3 mr-1"
+      :is-checked="inputValue === pickedValue"
       :checked-color="iconCheckedColor"
       :unchecked-color="iconUncheckedColor"
       :checked-hover-color="iconCheckedHoverColor"
       :unchecked-hover-color="iconUncheckedHoverColor">
-    </checkbox-icon>
+    </radio-icon>
 
     <span>
       {{ label }}
@@ -31,11 +30,11 @@
 </template>
 
 <script>
-import CheckboxIcon from '~/components/CheckboxIcon.vue'
+import RadioIcon from '~/components/RadioIcon.vue'
 
 export default {
   components: {
-    CheckboxIcon
+    RadioIcon
   },
   props: {
     inputId: {
@@ -46,8 +45,8 @@ export default {
       type: String,
       required: true
     },
-    isCheckedByDefault: {
-      type: Boolean,
+    pickedValue: {
+      type: String,
       required: true
     },
     inputGroupName: {
@@ -71,15 +70,9 @@ export default {
       type: String,
     },
   },
-  data () {
-    return {
-      isChecked: this.isCheckedByDefault
-    }
-  },
   methods: {
-    toggle (evt) {
-      this.isChecked = !this.isChecked
-      this.$emit(`${this.inputId}-toggled`, this.isChecked, evt.target.value)
+    emitValue (evt) {
+      this.$emit(`${this.inputId}-picked`, this.inputValue)
     }
   }
 }

@@ -1,8 +1,10 @@
 <template lang="html">
   <input-text
+    input-styles="py-2 px-2 bg-gray-700 text-gray-300 rounded-sm focus:shadow-outline border-primary"
     :input-id="id"
     :placeholder="placeholder"
     :label="messages.label"
+    :show-label="false"
     @matrix-connection-type-text-input="setConnectionType">
   </input-text>
 </template>

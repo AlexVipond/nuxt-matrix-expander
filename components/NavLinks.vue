@@ -1,19 +1,19 @@
 <template lang="html">
-  <ul>
-    <li>
+  <ul class="list-reset flex" :class="[textColor]">
+    <li class="mr-6 transition" :class="[textHoverColor]">
       <nuxt-link to="/">Home</nuxt-link>
     </li>
 
-    <li>
+    <li class="mr-6 transition" :class="[textHoverColor]">
       <nuxt-link to="/docs">Docs</nuxt-link>
     </li>
 
-    <li>
-      <call-to-action-tertiary :showIconBefore="true"/>
+    <li class="mr-6 transition" :class="[textHoverColor]">
+      <call-to-action-tertiary :showIconBefore="false"/>
     </li>
 
-    <li>
-      <call-to-action-secondary :showIconBefore="true"/>
+    <li class="transition" :class="[textHoverColor]">
+      <call-to-action-secondary :showIconBefore="false"/>
     </li>
   </ul>
 </template>
@@ -26,6 +26,16 @@ export default {
   components: {
     CallToActionTertiary,
     CallToActionSecondary
+  },
+  props: {
+    textColor: {
+      type: String,
+      default: 'primary-100'
+    },
+    textHoverColor: {
+      type: String,
+      default: 'hover:text-white'
+    }
   }
 }
 </script>

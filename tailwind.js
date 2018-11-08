@@ -44,21 +44,21 @@ View the full documentation at https://tailwindcss.com.
 */
 
 let colors = {
-  'primary-700': '#12283a',
-  'primary-600': '#1c3d5a',
-  'primary-500': '#2779bd',
-  'primary': '#3490dc',
-  'primary-300': '#6cb2eb',
-  'primary-200': '#bcdefa',
-  'primary-100': '#eff8ff',
+  'primary-700' : '#10351F',
+  'primary-600' : '#1F6B3E',
+  'primary-500' : '#2FA05E',
+  'primary' : '#34B268',
+  'primary-300' : '#71C995',
+  'primary-200' : '#AEE0C3',
+  'primary-100' : '#EBF7F0',
 
-  'primary-gray-100' : '#F2F8FA',
-  'primary-gray-200' : '#CBE1EA',
-  'primary-gray-300' : '#A4CBDB',
-  'primary-gray' : '#7DB5CB',
-  'primary-gray-500' : '#71A3B7',
-  'primary-gray-600' : '#4B6D7A',
-  'primary-gray-700' : '#26363D',
+  'primary-gray-700' : '#23382E',
+  'primary-gray-600' : '#47705C',
+  'primary-gray-500' : '#6AA78B',
+  'primary-gray' : '#76BA9A',
+  'primary-gray-300' : '#9FCFB8',
+  'primary-gray-200' : '#C8E3D7',
+  'primary-gray-100' : '#F1F8F5',
 
   'secondary-700': '#3d4852',
   'secondary-600': '#606f7b',
@@ -77,6 +77,20 @@ let colors = {
   'secondary-gray-100': '#f8fafc',
 
   'transparent': 'transparent',
+
+  'primary-10': 'rgba(52, 178, 104, 0.1)',
+  'primary-20': 'rgba(52, 178, 104, 0.2)',
+  'primary-25': 'rgba(52, 178, 104, 0.25)',
+  'primary-30': 'rgba(52, 178, 104, 0.3)',
+  'primary-33': 'rgba(52, 178, 104, 0.33)',
+  'primary-40': 'rgba(52, 178, 104, 0.4)',
+  'primary-50': 'rgba(52, 178, 104, 0.5)',
+  'primary-60': 'rgba(52, 178, 104, 0.6)',
+  'primary-67': 'rgba(52, 178, 104, 0.67)',
+  'primary-70': 'rgba(52, 178, 104, 0.7)',
+  'primary-75': 'rgba(52, 178, 104, 0.75)',
+  'primary-80': 'rgba(52, 178, 104, 0.8)',
+  'primary-90': 'rgba(52, 178, 104, 0.9)',
 
   'white-10': 'rgba(252,252,253,0.1)',
   'white-20': 'rgba(252,252,253,0.2)',
@@ -106,7 +120,7 @@ let colors = {
   'black-75': 'rgba(34,41,47,0.75)',
   'black-80': 'rgba(34,41,47,0.8)',
   'black-90': 'rgba(34,41,47,0.9)',
-  'black': '#22292f',
+  'black': '#121212',
 
   'true-black-10': 'rgba(0,0,0,0.1)',
   'true-black-20': 'rgba(0,0,0,0.2)',
@@ -138,6 +152,8 @@ let colors = {
   'true-white-90': 'rgba(255,255,255,0.9)',
   'true-white': '#ffffff',
 
+  'gray-900': '#1E2429',
+  'gray-800': '#252C32',
   'gray-700': '#3d4852',
   'gray-600': '#606f7b',
   'gray-500': '#8795a1',
@@ -284,6 +300,7 @@ module.exports = {
 
   fonts: {
     'sans': [
+      'Source Sans Pro',
       'Nanum Gothic',
       'system-ui',
       'BlinkMacSystemFont',
@@ -848,7 +865,7 @@ module.exports = {
     'md': '0 4px 8px 0 rgba(0,0,0,0.12), 0 2px 4px 0 rgba(0,0,0,0.08)',
     'lg': '0 15px 30px 0 rgba(0,0,0,0.11), 0 5px 15px 0 rgba(0,0,0,0.08)',
     'inner': 'inset 0 2px 4px 0 rgba(0,0,0,0.06)',
-    'outline': '0 0 0 3px rgba(52,144,220,0.5)',
+    'outline': `0 0 0 3px ${colors['primary-50']}`,
     'none': 'none',
   },
 

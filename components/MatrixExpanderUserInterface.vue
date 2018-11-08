@@ -1,23 +1,51 @@
 <template lang="html">
-  <form class="font-secondary" action="index.html" method="post">
+  <form class="flex flex-col items-center w-full max-w-md font-sans bg-gray-900 py-8 px-6 rounded shadow-lg" action="index.html" method="post">
     <!-- TODO:
       map qualitative values to quantitative
-      opt out of including edges with a strength of 0 -->
+      reset app
+      -->
 
+    <!-- <matrix-reset /> -->
+    
     <matrix-upload
+      class="mb-10"
       @matrix-uploaded="setMatrix" />
 
-    <matrix-direction
-      @direction-set="setDirection"/>
+    <div class="flex flex-col">
+      <div class="flex flex-col">
+        <h2 class="text-gray-500 font-400 text-lg mb-2">Matrix connections are...</h2>
 
-    <matrix-self-connections
-      @self-connections-set="setSelfConnections"/>
+        <div class="h-1 w-8 mb-3 border-t border-gray-600" />
 
-    <matrix-strength-zero
-      @strength-zero-set="setStrengthZero"/>
+        <matrix-direction
+          class="mb-10"
+          @direction-set="setDirection"/>
+      </div>
 
-    <matrix-connection-type
-      @connection-type-set="setConnectionType"/>
+      <div class="flex flex-col text-gray-300 mb-10">
+        <h2 class="text-gray-500 font-400 text-lg mb-2">Special instructions</h2>
+
+        <div class="h-1 w-8 mb-3 border-t border-gray-600" />
+
+        <matrix-self-connections
+          class="mb-2 hover:text-white transition"
+          @self-connections-set="setSelfConnections"/>
+
+        <matrix-strength-zero
+          class="hover:text-white transition"
+          @strength-zero-set="setStrengthZero"/>
+      </div>
+
+      <div class="flex flex-col">
+        <h2 class="text-gray-500 font-400 text-lg mb-2">Connection type is...</h2>
+
+        <div class="h-1 w-8 mb-3 border-t border-gray-600" />
+      </div>
+
+      <matrix-connection-type
+        class="mb-10"
+        @connection-type-set="setConnectionType"/>
+    </div>
 
     <matrix-expand
       :matrix="matrix"

@@ -1,64 +1,55 @@
 <template lang="html">
-  <div class="">
-    <label
-      class="btn hover:btn-grow active:btn-pressed"
-      for="matrix-directed"
-      @input="selectOption('directed')">
-      <input
-        id="matrix-directed"
-        class="hidden"
-        type="radio"
-        name="matrix-direction"
-        value="directed" />
+  <div class="flex flex-col">
+    <input-radio
+      class="mb-2 text-gray-300 hover:text-white transition"
+      input-id="matrix-directed"
+      input-value="directed"
+      :picked-value="direction"
+      :input-group-name="groupName"
+      :label="messages.directed.label"
+      icon-unchecked-color="text-color-inherit"
+      icon-checked-hover-color="hover:text-primary"
+      @matrix-directed-picked="setDirection">
+    </input-radio>
 
-      <div class="h-4 w-4 mr-2">
-        <feather-rotate-cw />
-      </div>
-
-      <span>
-        Directed
-      </span>
-    </label>
-
-    <label
-      class="btn hover:btn-grow active:btn-pressed"
-      for="matrix-undirected"
-      @input="selectOption('directed')">
-      <input
-        id="matrix-undirected"
-        class="hidden"
-        type="radio"
-        name="matrix-direction"
-        value="undirected" />
-
-      <div class="h-4 w-4 mr-2">
-        <feather-circle />
-      </div>
-
-      <span>
-        Undirected
-      </span>
-    </label>
+    <input-radio
+      class="mb-2 text-gray-300 hover:text-white transition"
+      input-id="matrix-undirected"
+      input-value="undirected"
+      :picked-value="direction"
+      :input-group-name="groupName"
+      :label="messages.undirected.label"
+      icon-unchecked-color="text-color-inherit"
+      icon-checked-hover-color="hover:text-primary"
+      @matrix-undirected-picked="setDirection">
+    </input-radio>
   </div>
 </template>
 
 <script>
-import FeatherRotateCw from '~/components/icons/FeatherRotateCw.vue'
-import FeatherCircle from '~/components/icons/FeatherCircle.vue'
+import InputRadio from '~/components/InputRadio.vue'
 
 export default {
   components: {
-    FeatherRotateCw,
-    FeatherCircle,
+    InputRadio
   },
   data () {
     return {
-      direction: ''
+      direction: '',
+      groupName: 'matrix-direction',
+      messages: {
+        directed: {
+          label: 'Directed',
+        },
+        undirected: {
+          label: 'Undirected',
+        }
+      }
     }
   },
   methods: {
-    selectOption (option) {
-      this.direction = option
+    setDirection (value) {
+      this.direction = value
       this.$emit('direction-set', this.direction)
     }
   }

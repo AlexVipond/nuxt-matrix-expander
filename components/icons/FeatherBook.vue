@@ -1,0 +1,16 @@
+<template lang="html">
+  <feather-icon>
+    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+  </feather-icon>
+</template>
+
+<script>
+import FeatherIcon from '~/components/icons/FeatherIcon.vue'
+
+export default {
+  components: {
+    FeatherIcon
+  }
+}
+</script>

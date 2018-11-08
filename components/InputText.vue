@@ -4,14 +4,19 @@
     :for="inputId"
     @input="emitValue">
     <input
-      class="inline-block w-full"
+      class="inline-block w-full focus:outline-none"
+      :class="[
+        inputStyles,
+      ]"
       :id="inputId"
       type="text"
       :name="inputId"
       :value="defaultValue"
       :placeholder="placeholder">
 
-    <span class="text-sm">
+    <span
+      v-if="showLabel"
+      class="text-sm">
       {{ label }}
     </span>
   </label>
@@ -20,6 +25,10 @@
 <script>
 export default {
   props: {
+    inputStyles: {
+      type: String,
+      default: 'bg-gray-200 text-black rounded-sm focus:shadow-outline'
+    },
     inputId: {
       type: String,
       required: true
@@ -35,6 +44,10 @@ export default {
     label: {
       type: String,
       required: true
+    },
+    showLabel: {
+      type: Boolean,
+      default: true
     }
   },
   data () {

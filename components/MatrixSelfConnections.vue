@@ -1,8 +1,9 @@
 <template lang="html">
   <input-checkbox
     :input-id="id"
+    :input-value="value"
     :is-checked-by-default="includeSelfConnections"
-    :checkbox-group-name="groupName"
+    :input-group-name="groupName"
     :label="messages.label"
     icon-unchecked-color="text-color-inherit"
     icon-checked-hover-color="hover:text-primary"
@@ -20,6 +21,7 @@ export default {
   data () {
     return {
       id: 'matrix-self-connections',
+      value: 'include-self-connections',
       includeSelfConnections: false,
       groupName: 'matrix-self-connections',
       messages: {

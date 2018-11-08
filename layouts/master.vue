@@ -1,16 +1,16 @@
 <template>
-  <div>
+  <div class="relative">
     <portal-target name="modals" multiple />
 
-    <fade-in-out :duration="500">
+    <fade-in-out :duration="400">
       <nav-bar :z-index="10"/>
     </fade-in-out>
 
-    <fade-in-out :duration="500">
+    <fade-in-out :duration="400">
       <nuxt />
     </fade-in-out>
 
-    <fade-in-out :duration="500">
+    <fade-in-out :duration="400">
       <custom-footer />
     </fade-in-out>
   </div>

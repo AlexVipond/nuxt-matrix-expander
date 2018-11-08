@@ -20,6 +20,7 @@
 
 <script>
 import Papa from 'papaparse'
+import XLSX from 'xlsx'
 
 import FeatherDownload from '~/components/icons/FeatherDownload.vue'
 
@@ -53,6 +54,13 @@ export default {
     }
   },
   methods: {
+    createBlueprint (edgeList) {
+      let blueprint = {
+        connections: edgeList
+      }
+
+      return JSON.stringify(blueprint, null, 2)
+    },
     convertToCSV (edgeList) {
       let fields = Array.from(
         new Set (
@@ -81,19 +89,55 @@ export default {
 
       return csv
     },
-    downloadEdgeList (edgeList, format, fileName) {
+    convertToXLSX (edgeList, fileName) {
+      let workbook = XLSX.utils.book_new()
+
+      let headers = Array.from(
+        new Set (
+          edgeList.reduce((headers, edge) => {
+            let currentFields = Object.keys(edge)
+
+            return headers.concat(currentFields)
+          }, [])
+        )
+      )
+
+      let worksheet = XLSX.utils.json_to_sheet(edgeList, { headers: headers })
+
+      XLSX.utils.book_append_sheet(workbook, worksheet, fileName)
+
+      return workbook
+    },
+
+    unparse (edgeList, format, fileName) {
       switch(true) {
         case format === 'json':
-          edgeList = JSON.stringify(edgeList, null, 2)
+          edgeList = this.createBlueprint(edgeList)
           break
         case format === 'csv':
           edgeList = this.convertToCSV(edgeList)
           break
-        default:
-          // support excel
+        case format === 'xlsx':
+          edgeList = this.convertToXLSX(edgeList, fileName)
+          break
       }
 
-      let uri = encodeURIComponent(edgeList)
+      return edgeList
+    },
+
+    downloadXLSX (workbook, fileName) {
+      // Via https://sheetjs.com/demos/modify.html
+      XLSX.write(workbook, {
+        bookType: 'xlsx',
+        bookSST: true,
+        type: 'base64'
+      })
+
+      XLSX.writeFile(workbook, `${fileName}-expanded.xlsx`);
+    },
+
+    downloadJSONOrCSV (string, format, fileName) {
+      let uri = encodeURIComponent(string)
       let dataURL = `text/${format};charset=utf-8,${uri}`
 
       let link = document.createElement("a"),
@@ -106,6 +150,16 @@ export default {
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
+    },
+
+    downloadEdgeList (edgeList, format, fileName) {
+      edgeList = this.unparse(edgeList, format, fileName)
+
+      if(format === 'xlsx') {
+        this.downloadXLSX(edgeList, fileName)
+      } else {
+        this.downloadJSONOrCSV(edgeList, format, fileName)
+      }
     }
   }
 }

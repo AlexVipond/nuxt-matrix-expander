@@ -1,6 +1,9 @@
 <template lang="html">
   <label
     class="btn hover:btn-grow active:btn-pressed"
+    :class="[
+      (edgeList.length > 0) ? 'bg-primary text-primary-700' : 'bg-gray-300 text-black'
+    ]"
     for="expand-matrix"
     @click.prevent="validateMatrix(matrix, direction)">
     <button

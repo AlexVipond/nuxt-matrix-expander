@@ -1,6 +1,9 @@
 <template lang="html">
   <label
     class="btn hover:btn-grow active:btn-pressed"
+    :class="[
+      (matrixIsUploaded) ? 'bg-primary text-primary-700' : 'bg-gray-300 text-black'
+    ]"
     for="matrix-upload">
     <div class="relative w-full">
       <div
@@ -71,7 +74,7 @@ export default {
   },
   methods: {
     emitData () {
-      this.$emit('matrix-uploaded', this.matrix, this.fileName)
+      this.$emit('matrix-uploaded', this.matrix, this.fileName.split('.')[0])
     },
 
     setFileName (value) {
