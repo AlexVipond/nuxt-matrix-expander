@@ -1,6 +1,6 @@
 <template lang="html">
   <label
-    class="inline-flex items-center group"
+    class="inline-flex items-center group cursor-pointer"
     :for="inputId"
     @change="toggle">
 

@@ -1,6 +1,6 @@
 <template lang="html">
   <label
-    class="btn hover:btn-grow active:btn-pressed"
+    class="btn hover:btn-grow active:btn-pressed font-sans bg-primary text-primary-700"
     :for="buttonId"
     @click="downloadEdgeList(edgeList, format, fileName)">
     <button

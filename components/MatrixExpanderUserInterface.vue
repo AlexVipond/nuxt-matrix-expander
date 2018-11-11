@@ -5,8 +5,6 @@
       reset app
       -->
 
-    <!-- <matrix-reset /> -->
-    
     <matrix-upload
       class="mb-10"
       @matrix-uploaded="setMatrix" />
@@ -22,6 +20,16 @@
           @direction-set="setDirection"/>
       </div>
 
+      <div class="flex flex-col">
+        <h2 class="text-gray-500 font-400 text-lg mb-2">Connection type is...</h2>
+
+        <div class="h-1 w-8 mb-3 border-t border-gray-600" />
+      </div>
+
+      <matrix-connection-type
+        class="mb-10"
+        @connection-type-set="setConnectionType"/>
+
       <div class="flex flex-col text-gray-300 mb-10">
         <h2 class="text-gray-500 font-400 text-lg mb-2">Special instructions</h2>
 
@@ -35,16 +43,6 @@
           class="hover:text-white transition"
           @strength-zero-set="setStrengthZero"/>
       </div>
-
-      <div class="flex flex-col">
-        <h2 class="text-gray-500 font-400 text-lg mb-2">Connection type is...</h2>
-
-        <div class="h-1 w-8 mb-3 border-t border-gray-600" />
-      </div>
-
-      <matrix-connection-type
-        class="mb-10"
-        @connection-type-set="setConnectionType"/>
     </div>
 
     <matrix-expand
@@ -86,8 +84,18 @@ export default {
     }
   },
   methods: {
+    scrollToEdgeListDownloadDisplay () {
+      let matrixExpanderUI = document.querySelector('#edge-list-download-display-container')
+
+      matrixExpanderUI.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+        inline: 'start'
+      })
+    },
     emitEdgeList () {
       this.$emit('edge-list-created', this.edgeList, this.fileName)
+      this.scrollToEdgeListDownloadDisplay()
     },
 
     setMatrix (matrix, fileName) {
@@ -110,7 +118,7 @@ export default {
       this.edgeList = edgeList
 
       this.emitEdgeList()
-    }
+    },
   }
 }
 </script>

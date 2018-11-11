@@ -1,27 +1,31 @@
 <template lang="html">
-  <div class="">
-    <edge-list-button-download
-      button-id="download-json"
-      format="json"
-      :edge-list="edgeList"
-      :file-name="fileName"
-      :label="messages.download.json" />
+  <div class="flex flex-col items-center w-full max-w-md max-h-full font-sans bg-gray-900 py-8 px-6 rounded shadow-lg">
+    <div class="flex mb-8">
+      <edge-list-button-download
+        class="mr-4"
+        button-id="download-json"
+        format="json"
+        :edge-list="edgeList"
+        :file-name="fileName"
+        :label="messages.download.json" />
 
-    <edge-list-button-download
-      button-id="download-csv"
-      format="csv"
-      :edge-list="edgeList"
-      :file-name="fileName"
-      :label="messages.download.csv" />
+      <edge-list-button-download
+        class="mr-4"
+        button-id="download-csv"
+        format="csv"
+        :edge-list="edgeList"
+        :file-name="fileName"
+        :label="messages.download.csv" />
 
-    <edge-list-button-download
-      button-id="download-xlsx"
-      format="xlsx"
-      :edge-list="edgeList"
-      :file-name="fileName"
-      :label="messages.download.xlsx" />
+      <edge-list-button-download
+        button-id="download-xlsx"
+        format="xlsx"
+        :edge-list="edgeList"
+        :file-name="fileName"
+        :label="messages.download.xlsx" />
+    </div>
 
-    <pre class="h-128 overflow-scroll">{{ stringifiedBlueprint }}</pre>
+    <pre class="w-full flex-1 overflow-scroll py-2 px-3 text-gray-500"><code class="json">{{ stringifiedBlueprint }}</code></pre>
   </div>
 </template>
 

@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "cross-env": "^5.2.0",
+    "highlight.js": "^9.13.1",
     "nuxt": "^2.0.0",
     "typeface-source-sans-pro": "0.0.54",
     "typeface-vt323": "0.0.54"

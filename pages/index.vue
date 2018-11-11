@@ -28,15 +28,17 @@
     </header>
 
     <section
-      class="pt-24 px-8 flex items-center justify-center"
+      class="h-screen px-8 flex flex-col items-center justify-center"
       id="matrix-expander-ui-container">
       <matrix-expander-user-interface
-        id="matrix-expander-ui"
         @edge-list-created="updateData"/>
     </section>
 
-    <section class="px-8">
+    <section
+      class="h-screen py-16 px-8 flex flex-col items-center justify-center"
+      id="edge-list-download-display-container">
       <edge-list-download-display
+        class="flex-1"
         :edge-list="edgeList"
         :file-name="fileName" />
     </section>
