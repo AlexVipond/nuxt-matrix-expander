@@ -1,0 +1,7 @@
+.markdown {
+  @apply max-w-md mx-auto font-sans text-gray-300;
+}
+
+.markdown h1 {
+  @apply text-gray-300 font-mono text-5xl;
+}

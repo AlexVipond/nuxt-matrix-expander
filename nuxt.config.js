@@ -62,7 +62,17 @@ module.exports = {
     }
   },
 
-  css: ['~/assets/css/tailwind.css', '~/assets/css/fonts.css'],
+  css: ['~/assets/css/tailwind.css', '~/assets/css/fonts.css', '~/assets/css/markdown.css'],
 
-  plugins: ['~plugins/vue-portal']
+  plugins: ['~plugins/vue-portal'],
+
+  modules: [
+    '@nuxtjs/markdownit'
+  ],
+
+  markdownit: {
+    preset: 'default',
+    linkify: true,
+    breaks: true
+  },
 }

@@ -1,14 +1,18 @@
 <template lang="html">
-  <section>
-    test
-  </section>
+  <main class="pt-32">
+    <section class="markdown container" v-html="docs" />
+  </main>
 </template>
 
 <script>
+import docs from '~/static/docs.md'
+
 export default {
-  layout: 'master'
+  layout: 'master',
+  computed: {
+    docs () {
+      return docs
+    }
+  }
 }
 </script>
-
-<style lang="css">
-</style>
