@@ -50,7 +50,7 @@ button:focus {
   .bg-pattern-circuit-board {
     @apply bg-repeat;
     background-color: rgba(0, 0, 0, 0);
-    background-image: url('~/circuit-board.svg');
+    background-image: url('~/matrix-expander/circuit-board.svg');
   }
 }
 

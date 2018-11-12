@@ -96,4 +96,7 @@ module.exports = {
   router: {
     base: '/matrix-expander/'
   }
+
+  // git push --delete origin gh-pages
+  // git subtree push --prefix dist origin gh-pages
 }
