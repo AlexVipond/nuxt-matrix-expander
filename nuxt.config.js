@@ -93,5 +93,7 @@ module.exports = {
     breaks: true
   },
 
-  routerBase
+  router: {
+    base: '/matrix-expander/'
+  }
 }
