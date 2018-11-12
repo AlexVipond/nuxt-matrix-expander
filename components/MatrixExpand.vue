@@ -66,43 +66,15 @@ export default {
         Edges with a strength of zero are valid only when zero strength connections are includeed.
       */
 
-      if(this.includeSelfConnections && this.includeStrengthZero) {
-        switch(true) {
-          case (currentStrengths[target] === undefined):
-            break
-          default:
-            return true
-        }
-      } else if(this.includeSelfConnections) {
-        switch(true) {
-          case (currentStrengths[target] === undefined):
-            break
-          case (currentStrengths[target] === 0):
-            break
-          default:
-            return true
-        }
-      } else if(this.includeStrengthZero) {
-        switch(true) {
-          case (currentStrengths[target] === undefined):
-            break
-          case (source === target):
-            break
-          default:
-            return true
-        }
-      } else {
-        switch(true) {
-          case (currentStrengths[target] === undefined):
-            break
-          case (currentStrengths[target] === 0):
-            break
-          case (source === target):
-            break
-          default:
-            return true
-        }
-      }
+      let conditions = [
+        (currentStrengths[target] !== undefined),
+        ((source === target && this.includeSelfConnections) || source !== target),
+        ((currentStrengths[target] === 0 && this.includeStrengthZero) || currentStrengths[target] !== 0)
+      ]
+
+      let isValid = conditions.reduce((conditionA, conditionB) => conditionA && conditionB)
+
+      return isValid
     },
 
     createDirectedEdge (source, target, currentStrengths) {
