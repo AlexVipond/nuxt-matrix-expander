@@ -4,6 +4,18 @@ import path from 'path'
 import PurgecssPlugin from 'purgecss-webpack-plugin'
 import glob from 'glob-all'
 
+class TailwindExtractor {
+  static extract(content) {
+    return content.match(/[A-Za-z0-9-_:\/]+/g) || [];
+  }
+}
+
+const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
+  router: {
+    base: '/<repository-name>/'
+  }
+} : {}
+
 module.exports = {
   mode: 'spa',
 
@@ -80,4 +92,6 @@ module.exports = {
     linkify: true,
     breaks: true
   },
+
+  routerBase
 }
