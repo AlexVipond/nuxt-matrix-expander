@@ -1,43 +1,104 @@
 # Matrix Expander Docs
 
-As network data structures go, **adjacency matrices** are a compact, effective option. In spreadsheet form, they look like this:
+Use this tool to convert [adjacency matrices](https://en.wikipedia.org/wiki/Adjacency_matrix) into [edge lists](https://www.khanacademy.org/computing/computer-science/algorithms/graph-representation/a/representing-graphs).
 
-<div class="flex">
-  <svg class="mx-auto w-64 h-64" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g clip-path="url(#clip0)">
-      <rect y="75" width="50" height="425" rx="10" fill="#4E8FD6"/>
-      <rect x="75" width="425" height="50" rx="10" fill="#F66D9B"/>
-      <rect x="75" y="75" width="425" height="425" rx="10" fill="#43C194"/>
-    </g>
-    <defs>
-      <clipPath id="clip0">
-        <rect width="500" height="500" fill="white"/>
-      </clipPath>
-    </defs>
-  </svg>
-</div>
-
-The blue bar on the left represents connection sources, the pink bar along the top represents connection targets, and the green body represents connection strengths (or a boolean value indicating absence/presence of a connection).
-
-Here's a more concrete example, representing connections from Harry Potter characters (left) to other characters (top) with varying strengths (body):
+To get started, click the **Start** button on the home page, then upload a JSON, CSV, or XLSX file containing an adjacency matrix. CSV and XLSX matrices should look like this:
 
 | | Harry | Hermione | Ron | Draco | Dobby |
 | --- | --- | --- | --- | --- | --- |
-| Harry | 5 | 4 | 4 | 2 | 3 |
-| Hermione | 4 | 5 | 5 | 0 | 4 |
-| Ron | 4 | 5 | 5 | 0 | 3 |
-| Draco | 1 | 0 | 0 | 5 | 0 |
-| Dobby | 5 | 5 | 5 | 0 | 2 |
+| Harry | 4 | 5 | 5 | 2 | 4 |
+| Hermione | 5 | 5 | 5 | 1 | 5 |
+| Ron | 5 | 5 | 4 | 1 | 4 |
+| Draco | 1 | 1 | 1 | 5 | 1 |
+| Dobby | 5 | 5 | 5 | 1 | 3 |
 
-In this matrix, you can see that there's an exceptionally strong connection from Hermione to Ron, a very weak but still existent connection from Draco to Harry, and a somewhat weak connection from Dobby to himself.
+And JSON matrices should look like this:
+
+```
+{
+  "strengths": {
+    "Harry": {
+      "Harry": 4,
+      "Hermione": 5,
+      "Ron": 5,
+      "Draco": 2,
+      "Dobby": 4
+    },
+    "Hermione": {
+      "Harry": 5,
+      "Hermione": 5,
+      "Ron": 5,
+      "Draco": 1,
+      "Dobby": 5
+    },
+    ...
+  }
+}
+
+```
+<!-- "Ron": {
+  "Harry": 5,
+  "Hermione": 5,
+  "Ron": 4,
+  "Draco": 1,
+  "Dobby": 3
+},
+"Draco": {
+  "Harry": 1,
+  "Hermione": 1,
+  "Ron": 1,
+  "Draco": 5,
+  "Dobby": 1
+},
+"Dobby": {
+  "Harry": 5,
+  "Hermione": 5,
+  "Ron": 5,
+  "Draco": 1,
+  "Dobby": 3
+} -->
+
+In a JSON matrix file, you can optionally include explicit arrays of sources and targets:
+
+```
+{
+  "strengths": {
+    "Harry": {
+      "Harry": 4,
+      "Hermione": 5,
+      "Ron": 5,
+      "Draco": 2,
+      "Dobby": 4
+    },
+    ...
+  },
+  "sources": ["Harry", "Hermione", "Ron", "Draco", "Dobby"],
+  "targets": ["Harry", "Hermione", "Ron", "Draco", "Dobby"],
+}
+```
+
+Custom `sources` and `targets` will override the matrix expander's default behavior, which is to extract sources and targets directly from the data. This can be useful if you have the matrix for a large network, but only want to include specific sources and targets in your edge list.
+
+After uploading, choose whether your matrix represents **directed** or **undirected** connections. Use the **Connection type is...** input to add a custom Type, which will appear in your edge list like so:
+
+| From | To | Strength | Type |
+| --- | --- | --- | --- |
+| Ron | Harry | 5 | Friendship |
+| Ron | Dobby | 3 | Friendship |
+| Draco | Hermione | 1 | Friendship |
+| ... | ... | ... | ... |
+
+Then, set special instructions for the matrix expander:
+- Checking **Include self connections** tells the matrix expander to include connections from a source node to itself, for example, a connection from **Dobby** to **Dobby** with a strength of **3**
+- Checking **Include zero strengths** tells the matrix expander to include connections with a strength of **0** in the edge list.
+
+Click **Expand** to expand your matrix. If you need to change a setting or upload a different file, simply change that setting and click **Expand** again.
+
+Download your edge list as a JSON, CSV, or XLSX, then drag-and-drop the file onto any [Kumu](https://kumu.io) map to import and visualize the data.
 
 
-<div class="flex">
-  <svg class="mx-auto w-64 h-64" width="500" height="500" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect y="75" width="50" height="425" rx="10" fill="#4E8FD6"/>
-    <rect x="75" y="75" width="50" height="425" rx="10" fill="#F66D9B"/>
-    <rect x="150" y="75" width="50" height="425" rx="10" fill="#43C194"/>
-    <rect x="225" y="75" width="275" height="425" rx="10" fill="#B8C2CC" fill-opacity="0.4"/>
-    <rect width="500" height="50" rx="10" fill="#F5825B"/>
-  </svg>
-</div>
+## Sample data
+
+[HarryPotterMatrix.csv](/HarryPotterMatrix.csv)
+[HarryPotterMatrix.xlsx](/HarryPotterMatrix.xlsx)
+[HarryPotterMatrix.json](/HarryPotterMatrix.json)
