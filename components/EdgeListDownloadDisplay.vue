@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="flex flex-col items-center w-full max-w-md max-h-full font-sans bg-gray-900 py-8 px-6 rounded shadow-lg">
+  <div class="flex flex-col items-center w-full max-w-md max-h-full ui-card">
     <div class="flex mb-8">
       <edge-list-button-download
         class="mr-4"

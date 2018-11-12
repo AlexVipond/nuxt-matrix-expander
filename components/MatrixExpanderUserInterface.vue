@@ -1,5 +1,5 @@
 <template lang="html">
-  <form class="flex flex-col items-center w-full max-w-md font-sans bg-gray-900 py-8 px-6 rounded shadow-lg" action="index.html" method="post">
+  <form class="flex flex-col items-center w-full max-w-md ui-card" action="index.html" method="post">
     <!-- TODO:
       map qualitative values to quantitative
       reset app
@@ -13,7 +13,7 @@
       <div class="flex flex-col">
         <h2 class="text-gray-500 font-400 text-lg mb-2">Matrix connections are...</h2>
 
-        <div class="h-1 w-8 mb-3 border-t border-gray-600" />
+        <div class="h-1 w-8 mb-3 border-t border-primary" />
 
         <matrix-direction
           class="mb-10"
@@ -23,7 +23,7 @@
       <div class="flex flex-col">
         <h2 class="text-gray-500 font-400 text-lg mb-2">Connection type is...</h2>
 
-        <div class="h-1 w-8 mb-3 border-t border-gray-600" />
+        <div class="h-1 w-8 mb-3 border-t border-primary" />
       </div>
 
       <matrix-connection-type
@@ -33,7 +33,7 @@
       <div class="flex flex-col text-gray-300 mb-10">
         <h2 class="text-gray-500 font-400 text-lg mb-2">Special instructions</h2>
 
-        <div class="h-1 w-8 mb-3 border-t border-gray-600" />
+        <div class="h-1 w-8 mb-3 border-t border-primary" />
 
         <matrix-self-connections
           class="mb-2 hover:text-white transition"

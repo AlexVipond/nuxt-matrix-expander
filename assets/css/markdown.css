@@ -1,7 +1,65 @@
 .markdown {
-  @apply max-w-md mx-auto font-sans text-gray-300;
+  @apply max-w-md mx-auto font-sans text-gray py-4 px-8 bg-gray-900 rounded shadow-lg;
 }
 
 .markdown h1 {
-  @apply text-gray-300 font-mono text-5xl;
+  @apply text-primary font-400 font-mono text-4xl mt-6 mb-4;
+}
+
+.markdown p {
+  @apply my-4;
+}
+
+.markdown p,
+.markdown li {
+  @apply tracking-wide;
+}
+
+.markdown a {
+  @apply text-primary;
+}
+
+.markdown a:hover {
+  @apply underline;
+}
+
+.markdown strong {
+  @apply font-700;
+}
+
+.markdown table,
+.markdown pre {
+ @apply my-8 overflow-x-scroll mx-auto;
+}
+
+.markdown table:first-of-type th {
+  @apply font-400;
+}
+
+.markdown th {
+  @apply text-left;
+}
+
+.markdown tr * {
+  @apply py-2 px-3 border border-gray-700;
+}
+
+.markdown table:first-of-type td  {
+  @apply text-right;
+}
+
+.markdown table:first-of-type td  {
+  @apply text-right;
+}
+
+.markdown pre {
+  @apply bg-gray-800 rounded p-3 text-gray-500;
+}
+
+.markdown p code {
+  @apply bg-primary-gray-700 rounded text-primary-gray-500 py-px px-1;
+}
+
+.markdown li {
+  @apply leading-tight my-2;
 }

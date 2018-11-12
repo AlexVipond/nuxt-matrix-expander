@@ -62,7 +62,12 @@ module.exports = {
     }
   },
 
-  css: ['~/assets/css/tailwind.css', '~/assets/css/fonts.css', '~/assets/css/markdown.css'],
+  css: [
+    '~/assets/css/tailwind.css',
+    '~/assets/css/fonts.css',
+    '~/assets/css/components.css',
+    '~/assets/css/markdown.css'
+  ],
 
   plugins: ['~plugins/vue-portal'],
 

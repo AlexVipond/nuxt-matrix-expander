@@ -1,5 +1,7 @@
 # Matrix Expander Docs
 
+<div class="h-1 w-8 mb-6 border-t border-primary"></div>
+
 Use this tool to convert [adjacency matrices](https://en.wikipedia.org/wiki/Adjacency_matrix) into [edge lists](https://www.khanacademy.org/computing/computer-science/algorithms/graph-representation/a/representing-graphs).
 
 To get started, click the **Start** button on the home page, then upload a JSON, CSV, or XLSX file containing an adjacency matrix. CSV and XLSX matrices should look like this:
@@ -34,7 +36,6 @@ And JSON matrices should look like this:
     ...
   }
 }
-
 ```
 <!-- "Ron": {
   "Harry": 5,
@@ -95,10 +96,3 @@ Then, set special instructions for the matrix expander:
 Click **Expand** to expand your matrix. If you need to change a setting or upload a different file, simply change that setting and click **Expand** again.
 
 Download your edge list as a JSON, CSV, or XLSX, then drag-and-drop the file onto any [Kumu](https://kumu.io) map to import and visualize the data.
-
-
-## Sample data
-
-[HarryPotterMatrix.csv](/HarryPotterMatrix.csv)
-[HarryPotterMatrix.xlsx](/HarryPotterMatrix.xlsx)
-[HarryPotterMatrix.json](/HarryPotterMatrix.json)

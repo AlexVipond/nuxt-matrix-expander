@@ -1,5 +1,5 @@
 <template>
-  <div class="relative">
+  <div class="relative bg-pattern-circuit-board">
     <portal-target name="modals" multiple />
 
     <fade-in-out :duration="400">

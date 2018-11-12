@@ -1,5 +1,5 @@
 <template>
-  <main class="bg-pattern-circuit-board">
+  <main>
     <header class="flex flex-col items-center justify-center h-screen px-8">
       <h1 class="mb-8 text-6xl tracking-loose font-mono font-400 text-primary">
         Expand your Matrix
