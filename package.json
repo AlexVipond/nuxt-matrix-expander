@@ -16,23 +16,24 @@
     "@nuxtjs/markdownit": "^1.2.2",
     "cross-env": "^5.2.0",
     "highlight.js": "^9.13.1",
-    "nuxt": "^2.0.0",
+    "nuxt": "^2.3.4",
     "typeface-source-sans-pro": "0.0.54",
     "typeface-vt323": "0.0.54"
   },
   "devDependencies": {
+    "@nuxtjs/google-analytics": "^2.0.2",
     "autoprefixer": "^8.6.4",
-    "eslint-config-prettier": "^3.1.0",
+    "eslint-config-prettier": "^3.3.0",
     "eslint-plugin-prettier": "2.6.2",
     "glob-all": "^3.1.0",
-    "nodemon": "^1.11.0",
-    "papaparse": "^4.6.1",
-    "portal-vue": "^1.4.0",
+    "nodemon": "^1.18.7",
+    "papaparse": "^4.6.2",
+    "portal-vue": "^1.5.0",
     "prettier": "1.14.3",
-    "purgecss-webpack-plugin": "^1.3.1",
+    "purgecss-webpack-plugin": "^1.4.0",
     "push-dir": "^0.4.1",
-    "tailwindcss": "^0.7.0",
+    "tailwindcss": "^0.7.2",
     "velocity-animate": "^1.5.2",
-    "xlsx": "^0.14.0"
+    "xlsx": "^0.14.1"
   }
 }

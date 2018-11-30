@@ -19,8 +19,6 @@ export default {
   mounted () {
     let links = this.$el.querySelectorAll('a')
 
-    console.log(links)
-
     links.forEach(link => {
       link.target = "_blank"
       link.rel = "noopener"

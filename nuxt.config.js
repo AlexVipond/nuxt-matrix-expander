@@ -67,7 +67,17 @@ module.exports = {
                 extensions: ['vue']
               }
             ],
-            whitelist: ['html', 'body', 'nuxt-progress']
+            whitelist: [
+              'html',
+              'body',
+              'nuxt-progress',
+              'markdown table',
+              'markdown pre',
+              'markdown table:first-of-type th',
+              'markdown th',
+              'markdown tr *',
+              'markdown table:first-of-type td',
+            ]
           })
         )
       }
@@ -84,6 +94,9 @@ module.exports = {
   plugins: ['~plugins/vue-portal'],
 
   modules: [
+    ['@nuxtjs/google-analytics', {
+      id: 'UA-58906424-5'
+    }],
     '@nuxtjs/markdownit'
   ],
 
@@ -97,6 +110,7 @@ module.exports = {
     base: '/matrix-expander/'
   }
 
+  // npm run generate
   // git push --delete origin gh-pages
   // git subtree push --prefix dist origin gh-pages
 }

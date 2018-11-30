@@ -48,10 +48,6 @@
   @apply text-right;
 }
 
-.markdown table:first-of-type td  {
-  @apply text-right;
-}
-
 .markdown pre {
   @apply bg-gray-800 rounded p-3 text-gray-500;
 }
