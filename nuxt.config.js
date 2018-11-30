@@ -94,9 +94,6 @@ module.exports = {
   plugins: ['~plugins/vue-portal'],
 
   modules: [
-    ['@nuxtjs/google-analytics', {
-      id: 'UA-58906424-5'
-    }],
     '@nuxtjs/markdownit'
   ],
 
