@@ -4,23 +4,23 @@
  * Released under the MIT License.
  */
 
-/**
-  * vue-router v3.0.1
-  * (c) 2017 Evan You
+/*!
+  * vue-router v3.0.2
+  * (c) 2018 Evan You
   * @license MIT
   */
 
 /**
- * vue-meta v1.5.5
+ * vue-meta v1.5.6
  * (c) 2018 Declan de Wet & Sébastien Chopin (@Atinux)
  * @license MIT
  */
 
 /*
-object-assign
-(c) Sindre Sorhus
-@license MIT
-*/
+	object-assign
+	(c) Sindre Sorhus
+	@license MIT
+	*/
 
 /*! VelocityJS.org (1.5.2). (C) 2014 Julian Shapiro. MIT @license: en.wikipedia.org/wiki/MIT_License */
 
@@ -31,7 +31,7 @@ object-assign
 /*! VelocityJS.org jQuery Shim (1.0.1). (C) 2014 The jQuery Foundation. MIT @license: en.wikipedia.org/wiki/MIT_License. */
 
 /*!
- * vue-no-ssr v1.0.0
+ * vue-no-ssr v1.1.0
  * (c) 2018-present egoist <0x142857@gmail.com>
  * Released under the MIT License.
  */
@@ -45,7 +45,7 @@ object-assign
 
 /* @license
 Papa Parse
-v4.6.1
+v4.6.2
 https://github.com/mholt/PapaParse
 License: MIT
 */
