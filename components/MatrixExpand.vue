@@ -69,7 +69,7 @@ export default {
       let conditions = [
         (currentStrengths[target] !== undefined),
         ((source === target && this.includeSelfConnections) || source !== target),
-        ((currentStrengths[target] === 0 && this.includeStrengthZero) || currentStrengths[target] !== 0)
+        ((currentStrengths[target] === 0 && this.includeStrengthZero) || currentStrengths[target])
       ]
 
       let isValid = conditions.reduce((conditionA, conditionB) => conditionA && conditionB)
