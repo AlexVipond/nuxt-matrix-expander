@@ -104,7 +104,7 @@ module.exports = {
   },
 
   router: {
-    base: '/matrix-expander/'
+    // base: '/matrix-expander/'
   }
 
   // npm run generate
