@@ -147,10 +147,29 @@ export default {
         return /^A\d+$/.test(cell)
       }
 
+      function buildRowOfCells(row, otherColumns) {
+        return otherColumns.reduce((rowOfCells, column) => [...rowOfCells, `${column}${row}`], [])
+      }
+
+      function buildCellB2ToEnd(otherRows, otherColumns) {
+        return otherRows
+          .reduce((cellB2ToEnd, row) => [...cellB2ToEnd, ...buildRowOfCells(row, otherColumns)], [])
+      }
+
       let cells = Object.keys(sheet),
           row1 = cells.filter(cell => isInRow1(cell)),
           columnA = cells.filter(cell => isInColumnA(cell)),
-          cellB2ToEnd = cells.filter(cell => !isInRow1(cell) && !isInColumnA(cell))
+          otherColumns = Array.from(
+            new Set(
+              cells.map(cell => cell.match(/^[A-Za-z]+/)[0])
+            )
+          ).sort().slice(1),
+          otherRows = Array.from(
+            new Set(
+              cells.map(cell => cell.match(/\d+$/)[0])
+            )
+          ).sort().slice(1),
+          cellB2ToEnd = buildCellB2ToEnd(otherRows, otherColumns) // Blank cells aren't included as keys in the parsed sheet, so cells B2 through the end of the sheet have to be inferred
 
       function getSources(columnA) {
         return columnA.map(cell => sheet[cell].v)
@@ -165,7 +184,7 @@ export default {
           return targets.reduce((currentStrengths, target) => {
             let currentCell = cellB2ToEnd.shift()
 
-            currentStrengths[target] = sheet[currentCell].v
+            currentStrengths[target] = sheet[currentCell] ? sheet[currentCell].v : undefined
 
             return currentStrengths
           }, {})
