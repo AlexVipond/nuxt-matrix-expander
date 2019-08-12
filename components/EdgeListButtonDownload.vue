@@ -104,7 +104,7 @@ export default {
 
       let worksheet = XLSX.utils.json_to_sheet(edgeList, { headers: headers })
 
-      XLSX.utils.book_append_sheet(workbook, worksheet, fileName)
+      XLSX.utils.book_append_sheet(workbook, worksheet, fileName.slice(0, 31))
 
       return workbook
     },
